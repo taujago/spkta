@@ -1,2 +1,2 @@
-# spkasaprokok
-Pendukung keputusan penyakit akibat asap rokok
+# spkjudulTA
+Pendukung keputusan rekomendasi judul Tugas akhir 
