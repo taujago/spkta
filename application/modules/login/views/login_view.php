@@ -59,12 +59,12 @@ html {
 								<div class="card-body p-6">
 									<div class="card-title text-center">Silahkan login</div>
 									<div class="form-group">
-										<label for="username" class="form-label">Nama pengguna</label>
-										<input type="text" class="form-control" id="username" name="username"  placeholder="Nama penggguna">
+										<label for="nim" class="form-label">NIM </label>
+										<input type="text" class="form-control" id="nim" name="nim"  placeholder="NIM ">
 									</div>
 									<div class="form-group">
 										<label for="password" class="form-label">Kata sandi
-											<a href="<?php echo site_url("login/lupapassword"); ?>" class="float-right small">Lupa password</a>
+										 
 										</label>
 										<input type="password" class="form-control" id="password"  name="password" placeholder="Kata sandi">
 									</div>

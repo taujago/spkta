@@ -26,7 +26,7 @@ class master_controller extends CI_Controller {
 	
 	function render(){
 		$arr = array();		 
-		$this->load->view("template3",$this->content );
+		$this->load->view("template",$this->content );
 		
 	}
 

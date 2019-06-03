@@ -1,11 +1,11 @@
 (function($) {
     "use strict";
-
+	
 // ______________ PAGE LOADING
 	$(window).on("load", function(e) {
 		$("#global-loader").fadeOut("slow");
 	})
-
+	
 	// ______________ BACK TO TOP BUTTON
 
 	$(window).on("scroll", function(e) {
@@ -32,13 +32,11 @@
 			targetFormElementSelector: '.rating-value'
 		}
 	};
-	$(".vscroll").mCustomScrollbar();
-	$(".app-sidebar").mCustomScrollbar({
-		theme:"minimal-dark",
-	    autoHideScrollbar: true
-	});
-})(jQuery);
 
+	$(".rating-stars").ratingStars(ratingOptions);
+	$(".vscroll").mCustomScrollbar();
+})(jQuery);
+	
 $(function(e) {
 		  /** Constant div card */
 	  const DIV_CARD = 'div.card';
@@ -77,5 +75,5 @@ $(function(e) {
 		return false;
 	  });
   });
-
-
+  
+  

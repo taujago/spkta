@@ -17,7 +17,7 @@
 
 
 		<!-- Title -->
-		<title>Sistem Pendukung keputusan || Diagnosa Penyakit Pernafasan </title>
+		<title>Sistem Pendukung keputusan || Rekomendasi Judul Tugas Akhir </title>
 		<link rel="stylesheet" href="<?php echo base_url("dark"); ?>/fonts/fonts/font-awesome.min.css">
 
 		<!-- Font Family -->
@@ -171,11 +171,11 @@
 
 						 
 						<li>
-							<a class="side-menu__item <?php echo ($this->controller=="konsumen")?"active":""; ?>" href="<?php echo site_url("konsumen"); ?>"><i class="side-menu__icon fa fa-user"></i><span class="side-menu__label">DATA MAHASISWA</span></a>
+							<a class="side-menu__item <?php echo ($this->controller=="mahasiswa")?"active":""; ?>" href="<?php echo site_url("mahasiswa"); ?>"><i class="side-menu__icon fa fa-user"></i><span class="side-menu__label">DATA MAHASISWA</span></a>
 						</li>
-						<li>
+						<!-- <li>
 							<a class="side-menu__item <?php echo ($this->controller=="laporan")?"active":""; ?>" href="<?php echo site_url("konsultasi/laporan"); ?>"><i class="side-menu__icon fa fa-file"></i><span class="side-menu__label">REKAP HASIL KONSULTASI</span></a>
-						</li>
+						</li> -->
 						<li>
 							<a class="side-menu__item <?php echo ($this->controller=="konsultasi")?"active":""; ?>" href="<?php echo site_url("konsultasi"); ?>"><i class="side-menu__icon fa fa-lightbulb-o"></i><span class="side-menu__label">KONSULTASI</span></a>
 						</li>

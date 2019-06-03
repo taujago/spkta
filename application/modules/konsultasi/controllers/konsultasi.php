@@ -59,7 +59,7 @@ $arr_nilai = array("A"=>1,"B"=>2,"C"=>3);
 // mabil detail data konsultasi yang sudah disimpan
 $this->db->select('k.*, u.nama,u.jk')
 ->from('konsultasi k')
-->join('pengguna u','u.id = k.user_id');
+->join('mahasiswa u','u.id = k.user_id');
 $this->db->where("k.id",$id); 
 $data = $this->db->get()->row_array();
 
@@ -155,14 +155,14 @@ $this->method="listview";
 
 $data_array = array();
 
-$this->db->select('k.*, t.kode as topik_kode, t.topik, t.keterangan, u.username, u.nama ')
+$this->db->select('k.*, t.kode as topik_kode, t.topik, t.keterangan, u.nim, u.nama ')
 ->from('konsultasi k')
-->join('pengguna u','k.user_id = u.id')
+->join('mahasiswa u','k.user_id = u.id')
 ->join('topik t','t.id = k.topik_id','left');
 $this->db->order_by("tanggal","desc");
 
 if($_SESSION['userdata'][0]['level'] == 0 ) {
-	$this->db->where("p.user_id",$_SESSION['userdata'][0]['id']);
+	$this->db->where("u.id",$_SESSION['userdata'][0]['id']);
 }
 
 $data_array['record'] = $this->db->get();
@@ -191,7 +191,7 @@ SELECT p.*,
   
     FROM penyakit p 
 left join pemeriksaan pm on p.id = pm.penyakit_id
-left join pengguna u on u.id = pm.user_id 
+left join mahasiswa u on u.id = pm.user_id 
   group by p.id 
   ) x 
   order by x.jumlah desc

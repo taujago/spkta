@@ -2,6 +2,7 @@
 class login extends CI_Controller {
 	function __construct(){
 		parent::__construct();
+		$this->load->model("coremodel","cm");
 	}
 
 
@@ -13,9 +14,9 @@ class login extends CI_Controller {
 	function ceklogin(){
 		$post = $this->input->post();
 
-		$this->db->where("username",$post['username']);
+		$this->db->where("nim",$post['nim']);
 		$this->db->where("password",md5($post['password']));
-		$res = $this->db->get("pengguna");
+		$res = $this->db->get("mahasiswa");
 		if($res->num_rows() > 0 ) {
 			$_SESSION['userdata'] = $res->result_array();
 			$_SESSION['login'] = true;
@@ -75,7 +76,7 @@ class login extends CI_Controller {
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('username', 'Nama pengguna', 'callback_cekuser');
+		$this->form_validation->set_rules('nim', 'NIM', 'callback_cekuser');
 		$this->form_validation->set_rules('password', 'Kata sandi', 'callback_cekpass');
 		 
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -91,7 +92,7 @@ class login extends CI_Controller {
 			$post['password'] = md5($post['password']);
 
 			$post['level'] = 0;
-			$res = $this->db->insert("pengguna",$post);
+			$res = $this->db->insert("mahasiswa",$post);
 			if($res){
 				$ret  = array(
 				"error"=>false,

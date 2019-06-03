@@ -12813,10 +12813,10 @@ a.icon:hover {
 	background-size: cover;
 	background-position: center;
 }
-.login-img {
+/*.login-img {
 	background: url('../images/login.jpg');
 	background-size: cover;
-}
+}*/
 .construction-img {
 	background: url('../images/construction.jpg');
 	background-size: cover;

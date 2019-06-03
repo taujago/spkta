@@ -1,5 +1,5 @@
 <?php
-class konsumen extends master_controller {
+class mahasiswa extends master_controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model("coremodel","cm");
@@ -144,13 +144,13 @@ function update(){
 			if($res){
 				$ret  = array(
 				"error"=>false,
-				"message"=>"Data konsumen berhasil diupdate" );
+				"message"=>"Data mahasiswa berhasil diupdate" );
 
 			}
 			else {
 				$ret  = array(
 				"error"=>true,
-				"message"=>"data konsumen gagal diupdate ".mysql_error() );
+				"message"=>"data mahasiswa gagal diupdate ".mysql_error() );
 			}
 
 

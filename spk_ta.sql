@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2019 at 06:26 PM
+-- Generation Time: Jun 03, 2019 at 02:27 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.36
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `konsultasi` (
   `prodi_id` int(11) NOT NULL,
   `topik_id` int(11) NOT NULL,
   `skor` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `konsultasi`
@@ -42,7 +42,9 @@ CREATE TABLE IF NOT EXISTS `konsultasi` (
 INSERT INTO `konsultasi` (`id`, `tanggal`, `user_id`, `prodi_id`, `topik_id`, `skor`) VALUES
 (1, '2019-06-02', 1, 1, 10, 7),
 (2, '2019-06-02', 1, 1, 1, 7),
-(3, '2019-06-02', 1, 1, 1, 3);
+(3, '2019-06-02', 1, 1, 1, 3),
+(4, '2019-06-03', 0, 1, 1, 10),
+(5, '2019-06-03', 12, 1, 10, 9);
 
 -- --------------------------------------------------------
 
@@ -55,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `konsultasi_detail` (
   `konsultasi_id` int(11) NOT NULL,
   `matakuliah_id` int(11) NOT NULL,
   `nilai` char(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `konsultasi_detail`
@@ -91,7 +93,60 @@ INSERT INTO `konsultasi_detail` (`id`, `konsultasi_id`, `matakuliah_id`, `nilai`
 (27, 3, 21, 'A'),
 (28, 3, 22, 'A'),
 (29, 3, 23, 'A'),
-(30, 3, 24, 'C');
+(30, 3, 24, 'C'),
+(31, 4, 7, 'A'),
+(32, 4, 8, 'A'),
+(33, 4, 17, 'B'),
+(34, 4, 18, 'A'),
+(35, 4, 19, 'A'),
+(36, 4, 20, 'B'),
+(37, 4, 21, 'A'),
+(38, 4, 22, 'A'),
+(39, 4, 23, 'A'),
+(40, 4, 24, 'A'),
+(41, 5, 7, 'A'),
+(42, 5, 8, 'C'),
+(43, 5, 17, 'A'),
+(44, 5, 18, 'A'),
+(45, 5, 19, 'C'),
+(46, 5, 20, 'A'),
+(47, 5, 21, 'A'),
+(48, 5, 22, 'B'),
+(49, 5, 23, 'A'),
+(50, 5, 24, 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mahasiswa`
+--
+
+CREATE TABLE IF NOT EXISTS `mahasiswa` (
+  `id` int(11) NOT NULL,
+  `nim` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(64) NOT NULL,
+  `level` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `hp` varchar(20) NOT NULL,
+  `alamat` text NOT NULL,
+  `jk` varchar(2) NOT NULL,
+  `umur` int(11) NOT NULL,
+  `prodi_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mahasiswa`
+--
+
+INSERT INTO `mahasiswa` (`id`, `nim`, `email`, `password`, `level`, `nama`, `hp`, `alamat`, `jk`, `umur`, `prodi_id`) VALUES
+(1, NULL, NULL, '0cc175b9c0f1b6a831c399e269772661', 1, 'Aministrator', '08132945559', 'Jl. kenair no. 343', 'L', 0, 0),
+(7, '6427427492749', 'budiman@gmail.com', '', 0, 'Firmansyah', '0813280800', 'jl. kenari no. 34', 'L', 20, 2),
+(8, '0009495985865', 'hendrix@gmail.com', '', 0, 'Bejo sandix', '0813243595', 'Jl. keramat jadixxx', 'P', 40, 1),
+(9, '567892494824', 'email@gmail.com', '', 0, 'Heru hendriyadi', '45838538r3985', 'Jl. undru no. 4', 'P', 40, 2),
+(10, '456789032482', 'aa@gmail.com', '0cc175b9c0f1b6a831c399e269772661', 0, 'Heru hendriyadi', '083848583', 'Jl. kenari no. 345', 'L', 3, 2),
+(11, '009998889', 'budi@gmail.com', '', 0, 'Eko kurniawan', '03895935893', 'Jl. kenari no. 335', 'L', 25, 1),
+(12, '01051906', 'admin@gmail.com', '0cc175b9c0f1b6a831c399e269772661', 0, 'Firmansyah', '0939853853858', 'JL. Sudirman no. 34 ', 'L', 21, 2);
 
 -- --------------------------------------------------------
 
@@ -267,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `topik` (
   `topik` varchar(255) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
   `kode` char(4) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `topik`
@@ -303,6 +358,12 @@ ALTER TABLE `konsultasi`
 -- Indexes for table `konsultasi_detail`
 --
 ALTER TABLE `konsultasi_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -350,12 +411,17 @@ ALTER TABLE `topik`
 -- AUTO_INCREMENT for table `konsultasi`
 --
 ALTER TABLE `konsultasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `konsultasi_detail`
 --
 ALTER TABLE `konsultasi_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+--
+-- AUTO_INCREMENT for table `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `matakuliah`
 --
@@ -385,7 +451,7 @@ ALTER TABLE `referensi_detail`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --

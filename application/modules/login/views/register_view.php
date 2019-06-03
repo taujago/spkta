@@ -45,21 +45,38 @@
 			<div class="page-single">
 				<div class="container">
 					<div class="row">
-						<div class="col col-md-6 mx-auto">
+						<div class="col col-md-10 mx-auto">
 							<div class="text-center mb-6">
 								<!-- <img src="<?php echo base_url(); ?>/assets/images/brand/logo.png" class="h-6" alt=""> -->
 							</div>
 							<form id="frmlogin" class="card" method="post">
 								<div class="card-body">
-									<div class="card-title text-center">Pendaftaran Pasien</div>
+									<div class="card-title text-center">Pendaftaran Mahasiswa Baru</div>
 									<div class="row">
-										
+
 									<div class="col-md-12">
+									<div class="form-group">
+									<label for="prodi_id" class="form-label">Program studi</label>
+									<?php 
+										$arr = $this->cm->arr_dropdown_prodi();
+										 
+										echo form_dropdown("prodi_id",$arr,'','id="prodi_id" class="form-control"');
+									?>
+
+									</div>	
+									</div>
+										
+									<div class="col-md-6">
 										<div class="form-group">
-										<label for="username" class="form-label">Nama pengguna</label>
-										<input type="text" class="form-control" id="username" name="username"  placeholder="Nama penggguna">
-									</div>
-									</div>
+						<label for="nim" class="form-control-label">NIM :</label>
+						<input type="text" name="nim" class="form-control" id="nim">
+					</div></div>
+					<div class="col-md-6">
+					<div class="form-group">
+						<label for="nama" class="form-control-label">Nama :</label>
+						<input type="text"  name="nama" class="form-control" id="nama">
+
+					</div></div>
 									<div class="col-md-6">
 										<div class="form-group">
 										<label for="password" class="form-label">Kata sandi
@@ -79,9 +96,10 @@
 									
 									<div class="col-md-6">
 										<div class="form-group">
-										<label for="username" class="form-label">Nama lengkap</label>
-										<input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama lengkap">
-									</div>
+						<label for="email" class="form-control-label">Email :</label>
+						<input type="email"  name="email" class="form-control" id="email">
+
+					</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">

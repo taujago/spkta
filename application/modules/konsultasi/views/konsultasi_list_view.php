@@ -27,7 +27,7 @@
 
 		<tr>
 			<td><?php echo $n; ?></td>
-			<td><?php echo $row->username; ?></td>
+			<td><?php echo $row->nim; ?></td>
 			<td><?php echo $row->nama; ?></td>
 			<td><?php echo $row->topik_kode; ?></td>
 			<td><?php echo $row->topik; ?></td>
