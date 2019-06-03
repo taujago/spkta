@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2019 at 02:27 PM
+-- Generation Time: Jun 03, 2019 at 08:59 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.36
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `konsultasi`
 --
 
+DROP TABLE IF EXISTS `konsultasi`;
 CREATE TABLE IF NOT EXISTS `konsultasi` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
@@ -52,6 +53,7 @@ INSERT INTO `konsultasi` (`id`, `tanggal`, `user_id`, `prodi_id`, `topik_id`, `s
 -- Table structure for table `konsultasi_detail`
 --
 
+DROP TABLE IF EXISTS `konsultasi_detail`;
 CREATE TABLE IF NOT EXISTS `konsultasi_detail` (
   `id` int(11) NOT NULL,
   `konsultasi_id` int(11) NOT NULL,
@@ -121,6 +123,7 @@ INSERT INTO `konsultasi_detail` (`id`, `konsultasi_id`, `matakuliah_id`, `nilai`
 -- Table structure for table `mahasiswa`
 --
 
+DROP TABLE IF EXISTS `mahasiswa`;
 CREATE TABLE IF NOT EXISTS `mahasiswa` (
   `id` int(11) NOT NULL,
   `nim` varchar(20) DEFAULT NULL,
@@ -140,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`id`, `nim`, `email`, `password`, `level`, `nama`, `hp`, `alamat`, `jk`, `umur`, `prodi_id`) VALUES
-(1, NULL, NULL, '0cc175b9c0f1b6a831c399e269772661', 1, 'Aministrator', '08132945559', 'Jl. kenair no. 343', 'L', 0, 0),
+(1, 'admin', NULL, '0cc175b9c0f1b6a831c399e269772661', 1, 'Aministrator', '08132945559', 'Jl. kenair no. 343', 'L', 0, 0),
 (7, '6427427492749', 'budiman@gmail.com', '', 0, 'Firmansyah', '0813280800', 'jl. kenari no. 34', 'L', 20, 2),
 (8, '0009495985865', 'hendrix@gmail.com', '', 0, 'Bejo sandix', '0813243595', 'Jl. keramat jadixxx', 'P', 40, 1),
 (9, '567892494824', 'email@gmail.com', '', 0, 'Heru hendriyadi', '45838538r3985', 'Jl. undru no. 4', 'P', 40, 2),
@@ -154,6 +157,7 @@ INSERT INTO `mahasiswa` (`id`, `nim`, `email`, `password`, `level`, `nama`, `hp`
 -- Table structure for table `matakuliah`
 --
 
+DROP TABLE IF EXISTS `matakuliah`;
 CREATE TABLE IF NOT EXISTS `matakuliah` (
   `id` int(10) unsigned NOT NULL,
   `matakuliah` varchar(255) DEFAULT NULL,
@@ -195,6 +199,7 @@ INSERT INTO `matakuliah` (`id`, `matakuliah`, `semester`, `kode`, `sks`, `prodi_
 -- Table structure for table `pengguna`
 --
 
+DROP TABLE IF EXISTS `pengguna`;
 CREATE TABLE IF NOT EXISTS `pengguna` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -225,6 +230,7 @@ INSERT INTO `pengguna` (`id`, `username`, `password`, `level`, `nama`, `hp`, `al
 -- Table structure for table `prodi`
 --
 
+DROP TABLE IF EXISTS `prodi`;
 CREATE TABLE IF NOT EXISTS `prodi` (
   `id` int(11) NOT NULL,
   `kode` varchar(10) NOT NULL,
@@ -245,6 +251,7 @@ INSERT INTO `prodi` (`id`, `kode`, `prodi`) VALUES
 -- Table structure for table `referensi`
 --
 
+DROP TABLE IF EXISTS `referensi`;
 CREATE TABLE IF NOT EXISTS `referensi` (
   `id` int(11) NOT NULL,
   `nim` varchar(20) NOT NULL,
@@ -268,6 +275,7 @@ INSERT INTO `referensi` (`id`, `nim`, `nama`, `topik_id`, `prodi_id`) VALUES
 -- Table structure for table `referensi_detail`
 --
 
+DROP TABLE IF EXISTS `referensi_detail`;
 CREATE TABLE IF NOT EXISTS `referensi_detail` (
   `id` int(11) NOT NULL,
   `matakuliah_id` int(11) DEFAULT NULL,
@@ -317,6 +325,7 @@ INSERT INTO `referensi_detail` (`id`, `matakuliah_id`, `nilai`, `referensi_id`) 
 -- Table structure for table `topik`
 --
 
+DROP TABLE IF EXISTS `topik`;
 CREATE TABLE IF NOT EXISTS `topik` (
   `id` int(11) NOT NULL,
   `topik` varchar(255) DEFAULT NULL,
