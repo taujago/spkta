@@ -93,6 +93,7 @@ function edit(id,kode,prodi){
 		dataType : 'json',
 		success : function(obj){
 
+			$("#no_urut").val(obj.detail.no_urut);
 			$("#id").val(obj.detail.id);
 			$("#nim").val(obj.detail.nim);
 			$("#nama").val(obj.detail.nama);

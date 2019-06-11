@@ -13,9 +13,7 @@ class referensi extends master_controller {
 		$data_array = array();
 
 
-		$this->db->select('*')->from('topik');
-		$res = $this->db->get();
-		$data_array['record'] = $res; 
+		 
 		 
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
@@ -45,7 +43,7 @@ function getdata($prodi_id){
 	->join('topik t','t.id = r.topik_id')
 	->where("r.prodi_id",$prodi_id)
 	 
-	->order_by("r.id");
+	->order_by("r.no_urut");
 	$data['rec_referensi'] = $this->db->get();
 
 

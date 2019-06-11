@@ -101,6 +101,7 @@ $arr_ref = array();
 $arr_hasil = array();
 foreach($res->result() as $row): 
   $arr_ref[$row->id] = array(
+      "no_urut" => $row->no_urut,
       "nim"     => $row->nim,
       "nama"    => $row->nama, 
       "prodi_id"=> $row->prodi_id,
@@ -150,7 +151,7 @@ $data_array['arr_hasil'] = $arr_hasil;
 $data_array['rs'] = $rs;
 $data_array['arr_nilai'] = $arr_nilai;
 
- 
+$data_array['konsultasi_id'] = $id; 
 
 $content = $this->load->view($this->controller."_view_result",$data_array,true);
 

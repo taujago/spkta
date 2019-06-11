@@ -13,11 +13,12 @@
 	?>
 <thead>
 	<tr>
-		<th rowspan="2">NO. </th>
+		<th rowspan="2">NO URUT. </th>
 		<th rowspan="2">NAMA </th>
 		<TH rowspan="2">NIM</TH>
 		<TH colspan="<?php echo $span; ?>">NILAI MATA KULIAH </TH>
 		<TH rowspan="2">TOPIK </TH>
+		<TH rowspan="2">JUDUL </TH>
 		<TH rowspan="2">PROSES </TH>
 	</tr>
 	<tr>
@@ -39,9 +40,10 @@
 	$no++;
 	?>
 	<tr>
-		<td><?php echo $no;  ?></td>
-		<td><?php echo $row->nim ?></td>
+		<td><?php echo $row->no_urut;  ?></td>
 		<td><?php echo $row->nama ?></td>
+		<td><?php echo $row->nim ?></td>
+		
 		 
 		<?php 
 			$rs = $this->cm->get_nilai($row->id);
@@ -50,6 +52,7 @@
 		<td><?php echo $rw->nilai; ?> </td>
 		<?php endforeach; ?>
 		<td><?php echo $row->topik ?></td>
+		<td><?php echo $row->judul ?></td>
 		<td>
 			<a href="#!"  onclick="edit('<?php echo $row->id; ?>');"  class="btn btn-warning text-light"><i class="fa fa-pencil"></i>Edit</a>
 					<a href="#!" onclick="hapus('<?php echo $row->id; ?>');"  class="btn btn-danger text-light"><i class="fa fa-trash"></i>Hapus	</a>

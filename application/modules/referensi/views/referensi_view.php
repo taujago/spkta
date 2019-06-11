@@ -37,6 +37,15 @@
 
 					<div class="row">
 						
+
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="no_urut" class="form-control-label">No. Urut :</label>
+							<input type="text" name="no_urut" class="form-control" id="no_urut">
+							</div>
+						</div>
+
+
 						<div class="col-md-6">
 							<div class="form-group">
 							<label for="nim" class="form-control-label">NIM :</label>
@@ -62,6 +71,13 @@
 								echo form_dropdown("topik_id",$arr,'','id="topik_id"  class="form-control"');
 
 							?>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="judul" class="form-control-label">Judul Tugas Akhir  :</label>
+							<input type="text" name="judul" class="form-control" id="judul">
 							</div>
 						</div>
 
