@@ -75,6 +75,8 @@
 		<?php $n=0; 
 		foreach($arr_hasil as $id => $bobot ) : 
 		$n++; 
+		$cek = ($n==1)?'checked="checked"':"";
+		$topik_id = $arr_ref[$id]['topik_id'];
 		?>
 			<tr>
 				<td><?php echo $n; ?> </td>
@@ -83,7 +85,7 @@
 				<td><?php echo $arr_ref[$id]['kd_topik']; ?></td>
 				<td><?php echo $arr_ref[$id]['topik']; ?></td>
 				<td><?php echo $arr_ref[$id]['keterangan_topik']; ?></td>
-				<td><input id="pilihan" name="pilihan" type="radio" value="<?php echo "$id|$bobot|$konsultasi_id"; ?>"></td>
+				<td><input <?php echo $cek; ?> id="pilihan" name="pilihan" type="radio" value="<?php echo "$topik_id|$bobot|$konsultasi_id"; ?>"></td>
 			</tr>
 		<?php endforeach; ?>
 	</tbody>
@@ -109,6 +111,16 @@ $(document).ready(function(){
 			success : function(obj){
 
 				
+				if(obj.error == false) { 
+
+				swal.fire('Info',obj.message,'success').then((result)=>{
+					location.href='<?php echo site_url("$this->controller/review2/$konsultasi_id"); ?>';
+				});
+
+				}
+				else {
+					swal.fire('Error',obj.message,'error');
+				}
 
 			}
 		});

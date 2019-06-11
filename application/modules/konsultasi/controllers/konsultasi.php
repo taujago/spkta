@@ -107,6 +107,7 @@ foreach($res->result() as $row):
       "prodi_id"=> $row->prodi_id,
       "topik"   => $row->topik,
       "kd_topik"=> $row->kd_topik,
+      "topik_id" => $row->topik_id,
       "keterangan_topik" => $row->keterangan_topik
 
   );
@@ -162,9 +163,102 @@ $this->render();
 
 }
 
-// function list(){
-// 	echo "flow";
-// }
+
+
+function review2($id){
+// buat nilai angka dari nilai huurf 
+$arr_nilai = array("A"=>1,"B"=>2,"C"=>3);
+
+// mabil detail data konsultasi yang sudah disimpan
+$this->db->select('k.*, u.nama,u.jk')
+->from('konsultasi k')
+->join('mahasiswa u','u.id = k.user_id');
+$this->db->where("k.id",$id); 
+$data = $this->db->get()->row_array();
+
+
+// buatkan array input 
+$this->db->where("konsultasi_id",$id);
+$rs = $this->db->get("konsultasi_detail");
+
+$arr_input = array();
+foreach($rs->result() as $row) : 
+  $arr_input[$row->matakuliah_id] = $arr_nilai[$row->nilai];
+endforeach;
+
+
+
+
+$this->db->select('r.*, t.id as topik_id, t.kode as kd_topik, t.topik, t.keterangan as keterangan_topik')
+->from("referensi r")
+->join("topik t","t.id = r.topik_id");
+$this->db->where("prodi_id",$data['prodi_id']);
+$this->db->where("t.id",$data['topik_id']);
+$res = $this->db->get();
+// echo $this->db->last_query(); exit;
+$arr_ref = array();
+$arr_hasil = array();
+foreach($res->result() as $row): 
+  $arr_ref[$row->id] = array(
+      "judul"   => $row->judul,
+      "no_urut" => $row->no_urut,
+      "nim"     => $row->nim,
+      "nama"    => $row->nama, 
+      "prodi_id"=> $row->prodi_id,
+      "topik"   => $row->topik,
+      "kd_topik"=> $row->kd_topik,
+      "keterangan_topik" => $row->keterangan_topik
+
+  );
+
+  $this->db->order_by("id");
+  $this->db->where("referensi_id",$row->id);
+  $rd = $this->db->get("referensi_detail");
+  //echo $this->db->last_query(); exit;
+  $arr_ref[$row->id]['jumlah'] = 0; 
+  foreach($rd->result() as $rwd):
+    $mk_id = $rwd->matakuliah_id;
+    $arr_ref[$row->id]['nilai'][$mk_id] = $arr_nilai[$rwd->nilai];
+    $arr_ref[$row->id]['skor'][$mk_id] = 
+      abs( $arr_input[$mk_id] -  $arr_nilai[$rwd->nilai] ) ; 
+    $arr_ref[$row->id]['jumlah'] +=  $arr_ref[$row->id]['skor'][$mk_id] ; 
+  endforeach;
+
+  $arr_hasil[$row->id] = $arr_ref[$row->id]['jumlah'];
+endforeach;
+
+arsort($arr_hasil);
+
+foreach($arr_hasil as $id_ref => $bobot) : 
+  $arrx['skor'] = $bobot;
+  $arrx['topik_id'] = $arr_ref[$id_ref]['kd_topik'];
+  $this->db->where("id",$id);
+  $this->db->update("konsultasi",$arrx);
+  $break; 
+endforeach;
+
+
+
+ 
+$data_array['data'] = $data;
+$data_array['arr_input'] = $arr_input;
+$data_array['arr_ref'] = $arr_ref;
+$data_array['arr_hasil'] = $arr_hasil;
+$data_array['rs'] = $rs;
+$data_array['arr_nilai'] = $arr_nilai;
+
+$data_array['konsultasi_id'] = $id; 
+
+$content = $this->load->view($this->controller."_view_result_final",$data_array,true);
+
+$this->set_title("HASIL DIAGNOSA");
+$this->set_content($content);
+$this->render();
+
+
+}
+
+ 
 function listview(){
 
 $this->method="listview";
@@ -225,6 +319,58 @@ $this->render();
 
 }
 
+function savepilihan(){
+  $post = $this->input->post();
+
+  $input = $post['pilihan'];
+  $tmp = explode("|",$input);
+  $arr['topik_id'] = $tmp[0];
+  $arr['skor'] = $tmp[1];
+
+  // show_array($tmp);
+
+  $this->db->where("id",$tmp[2]);
+  $res = $this->db->update("konsultasi",$arr); 
+  // echo $this->db->last_query();
+  if($res){
+     $ret = array("error"=>false,"message"=>"Pilihan topik berhasil disimpan"); 
+  }
+  else {
+      $ret = array("error"=>true,"message"=>"Pilihan topik gagal disimpan");
+  }
+  echo json_encode($ret);
+
+}
+
+
+function savejudul(){
+  $post = $this->input->post();
+
+  $input = $post['pilihan'];
+  $tmp = explode("|",$input);
+  $referensi_id = $tmp[0];
+  $konsultasi_id  = $tmp[1];
+
+  $this->db->where("id",$referensi_id);
+  $dr = $this->db->get("referensi")->row();
+
+  $arr['judul'] = $dr->judul;
+
+
+
+  // show_array($tmp);
+
+  $this->db->where("id",$konsultasi_id);
+  $res = $this->db->update("konsultasi",$arr); 
+  // echo $this->db->last_query();
+  if($res){
+     $ret = array("error"=>false,"message"=>"Pilihan judul berhasil disimpan"); 
+  }
+  else {
+      $ret = array("error"=>true,"message"=>"Pilihan judul gagal disimpan");
+  }
+  echo json_encode($ret);
+}
 
 
 }
