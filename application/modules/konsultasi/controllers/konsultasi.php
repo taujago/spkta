@@ -14,15 +14,31 @@ class konsultasi extends master_controller {
 		// echo "fuckkk.."; exit;
 		$data_array = array();
 
-		 
 
+
+    if($_SESSION['userdata'][0]['level'] == 0 ) { 
+    $this->db->where("id",$_SESSION['userdata'][0]['prodi_id']);
+    $dprodi = $this->db->get("prodi")->row();
+
+    $data_array['prodi'] = $dprodi->kode." - ".$dprodi->prodi;
+    $this->set_title("KONSULTASI  PEMILIHAN TOPIK TUGAS AKHIR PROGRAM STUDI  ". $data_array['prodi']);
+		 
+    }
+    else {
+       $this->set_title("KONSULTASI  PEMILIHAN TOPIK TUGAS AKHIR PROGRAM STUDI  ");
+    }
+
+    $this->db->where("prodi_id",$_SESSION['userdata'][0]['prodi_id']);
+    $data_array['record'] = $this->db->get("matakuliah");
 
 
 		 
 		 
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_title("KONSULTASI  PEMILIHAN TOPIK TUGAS AKHIR");
+		
+
+
 		$this->set_content($content);
 		$this->render();
 	}
@@ -34,7 +50,7 @@ function save(){
 
   $tmp['tanggal'] = date("Y-m-d");
   $tmp['user_id'] = $_SESSION['userdata'][0]['id'];
-  $tmp['prodi_id'] = $post['v_program_studi'];
+  $tmp['prodi_id'] = ($_SESSION['userdata'][0]['level'] == 0)?$_SESSION['userdata'][0]['prodi_id']:$post['v_program_studi'];
 
   $this->db->insert("konsultasi",$tmp);
   $konsultasi_id = $this->db->insert_id();
