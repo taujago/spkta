@@ -161,13 +161,19 @@ if($_SESSION['userdata'][0]['level'] == 1) :
 									<span>MAHASISWA </span>
 								</a>
 							</li>
-<?php endif; ?>
+<?php endif; 
+if($_SESSION['userdata'][0]['level'] == 0 ) : 
+?>
+							
+				
 							<li class="nav-item">
 								<a class="nav-link" href="<?php echo site_url("konsultasi"); ?>">
 									<i class="fa fa-lightbulb-o"></i>
 									<span>KONSULTASI </span>
 								</a>
 							</li>
+<?php  endif; ?> 
+
 							<li class="nav-item">
 								<a class="nav-link" href="<?php echo site_url("konsultasi/listview"); ?>">
 									<i class="fa fa-window-restore"></i>
