@@ -16,6 +16,30 @@ var dt = $("#tabel").DataTable(
 		 	});
 
 
+$("#btnreset").click(function(){
+		$("#v_prodi_id").val('').attr('selected','selected');
+		$("#v_matakuliah").val('')
+		$("#btncari").click();
+	});
+
+
+$("#btncari").click(function(){
+
+
+		// dt.column(1).search($("#v_prodi_id").val())
+		// .column(2).search($("#v_mahasiswa").val())
+		// .draw();
+
+prodi =  $("#v_prodi_id").val();
+a = $("#v_matakuliah").val();
+
+	dt.column(1).search(prodi)
+	.column(2).search(a).draw();
+
+		// swal.fire('hello');
+		return false;
+	});
+
  
 
 	$("#btnsimpan").click(function(){
@@ -47,24 +71,9 @@ var dt = $("#tabel").DataTable(
 		});
 	});
 
-	$("#btncari").click(function(){
+	
 
-
-		dt
-		.column(1).search($("#v_prodi_id").val())
-		.column(2).search($("#v_mahasiswa").val())
-		.draw();
-
-
-		return false;
-	});
-
-
-	$("#btnreset").click(function(){
-		$("#v_prodi_id").val('').attr('selected','selected');
-		$("#v_mahasiswa").val('');
-		$("#btncari").click();
-	});
+	
 
 
 

@@ -43,7 +43,7 @@
 	<div class="col-md-2">
 	 	<div class="form-group">
 		<label for="" class="form-label">&nbsp;</label>
-		 <button type="submit" class="btn btn-danger btn-block" id="btnreset"> <i class="fa fa-remove"></i> RESET </button>
+		 <a href="#!" class="btn btn-danger btn-block" id="btnreset"> <i class="fa fa-remove"></i> RESET </a>
 		</div>
 	</div>
 	<!-- <div class="col-md-2 pt-5">
